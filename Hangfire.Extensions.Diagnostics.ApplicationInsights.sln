@@ -4,6 +4,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F2524385-9CB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hangfire.Extensions.Diagnostics.ApplicationInsights", "src\Hangfire.Extensions.Diagnostics.ApplicationInsights\Hangfire.Extensions.Diagnostics.ApplicationInsights.csproj", "{1F1A5E5A-D6B3-4148-8B81-D42C850511C0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{E03D166E-A065-4680-8A7D-CCF55C9B5AEA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationSample", "samples\WebApplicationSample\WebApplicationSample.csproj", "{70A86AA0-93F6-4FCF-858F-DAB4AE367750}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -11,11 +15,16 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1F1A5E5A-D6B3-4148-8B81-D42C850511C0} = {F2524385-9CB9-4898-9481-B1B7C5A40514}
+		{70A86AA0-93F6-4FCF-858F-DAB4AE367750} = {E03D166E-A065-4680-8A7D-CCF55C9B5AEA}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{1F1A5E5A-D6B3-4148-8B81-D42C850511C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F1A5E5A-D6B3-4148-8B81-D42C850511C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F1A5E5A-D6B3-4148-8B81-D42C850511C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F1A5E5A-D6B3-4148-8B81-D42C850511C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70A86AA0-93F6-4FCF-858F-DAB4AE367750}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A86AA0-93F6-4FCF-858F-DAB4AE367750}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A86AA0-93F6-4FCF-858F-DAB4AE367750}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A86AA0-93F6-4FCF-858F-DAB4AE367750}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
