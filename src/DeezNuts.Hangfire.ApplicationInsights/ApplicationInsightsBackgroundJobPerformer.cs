@@ -3,7 +3,7 @@ using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights;
 using System.Text.Json;
 
-namespace Hangfire.Extensions.Diagnostics.ApplicationInsights;
+namespace DeezNuts.Hangfire.ApplicationInsights;
 
 public sealed class ApplicationInsightsBackgroundJobPerformer : IBackgroundJobPerformer
 {

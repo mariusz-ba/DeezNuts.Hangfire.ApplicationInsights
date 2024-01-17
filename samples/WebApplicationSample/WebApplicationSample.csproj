@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Hangfire.Extensions.Diagnostics.ApplicationInsights\Hangfire.Extensions.Diagnostics.ApplicationInsights.csproj" />
+    <ProjectReference Include="..\..\src\DeezNuts.Hangfire.ApplicationInsights\DeezNuts.Hangfire.ApplicationInsights.csproj" />
   </ItemGroup>
 
 </Project>

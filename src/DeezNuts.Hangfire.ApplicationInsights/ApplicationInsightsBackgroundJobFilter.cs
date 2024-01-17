@@ -3,7 +3,7 @@ using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.ApplicationInsights;
 
-namespace Hangfire.Extensions.Diagnostics.ApplicationInsights;
+namespace DeezNuts.Hangfire.ApplicationInsights;
 
 public sealed class ApplicationInsightsBackgroundJobFilter : IClientFilter, IClientExceptionFilter
 {

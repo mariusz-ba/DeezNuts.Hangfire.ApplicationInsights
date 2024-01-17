@@ -1,4 +1,4 @@
-using Hangfire.Extensions.Diagnostics.ApplicationInsights;
+using DeezNuts.Hangfire.ApplicationInsights;
 using Hangfire.SqlServer;
 using Hangfire;
 using WebApplicationSample;

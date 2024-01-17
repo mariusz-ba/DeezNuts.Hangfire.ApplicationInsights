@@ -1,10 +1,11 @@
 using Hangfire.Client;
 using Hangfire.Server;
 using Hangfire.States;
+using Hangfire;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Hangfire.Extensions.Diagnostics.ApplicationInsights;
+namespace DeezNuts.Hangfire.ApplicationInsights;
 
 public static class ServiceCollectionExtensions
 {

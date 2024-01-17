@@ -1,21 +1,21 @@
-# Hangfire.Extensions.Diagnostics.ApplicationInsights
+# DeezNuts.Hangfire.ApplicationInsights
 
 Provides Dependency and Request telemetry for Hangfire jobs.
 
 ## Installation
 
-Install the `Hangfire.Extensions.Diagnostics.ApplicationInsights` NuGet package.
+Install the `DeezNuts.Hangfire.ApplicationInsights` NuGet package.
 
 ### Package Manager Console
 
 ```powershell
-Install-Package Hangfire.Extensions.Diagnostics.ApplicationInsights
+Install-Package DeezNuts.Hangfire.ApplicationInsights
 ```
 
 ### .NET Core CLI
 
 ```shell
-dotnet add package Hangfire.Extensions.Diagnostics.ApplicationInsights
+dotnet add package DeezNuts.Hangfire.ApplicationInsights
 ```
 
 ## Usage
