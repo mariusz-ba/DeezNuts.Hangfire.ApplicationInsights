@@ -1,3 +1,6 @@
+[![NuGet](https://img.shields.io/nuget/v/DeezNuts.Hangfire.ApplicationInsights.svg)](https://www.nuget.org/packages/DeezNuts.Hangfire.ApplicationInsights)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
 # DeezNuts.Hangfire.ApplicationInsights
 
 Provides Dependency and Request telemetry for Hangfire jobs.
