@@ -1,17 +1,23 @@
 using Hangfire.Server;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.ApplicationInsights;
+using Microsoft.Extensions.Options;
 using System.Text.Json;
 
 namespace DeezNuts.Hangfire.ApplicationInsights;
 
 public sealed class ApplicationInsightsBackgroundJobPerformer : IBackgroundJobPerformer
 {
+    private readonly IOptions<HangfireApplicationInsightsOptions> _options;
     private readonly IBackgroundJobPerformer _performer;
     private readonly TelemetryClient _telemetryClient;
 
-    public ApplicationInsightsBackgroundJobPerformer(IBackgroundJobPerformer performer, TelemetryClient telemetryClient)
+    public ApplicationInsightsBackgroundJobPerformer(
+        IOptions<HangfireApplicationInsightsOptions> options,
+        IBackgroundJobPerformer performer,
+        TelemetryClient telemetryClient)
     {
+        _options = options;
         _performer = performer;
         _telemetryClient = telemetryClient;
     }
@@ -30,14 +36,17 @@ public sealed class ApplicationInsightsBackgroundJobPerformer : IBackgroundJobPe
             operation.Telemetry.Properties.Add("JobMethod", context.BackgroundJob.Job.Method.Name);
             operation.Telemetry.Properties.Add("JobCreatedAt", context.BackgroundJob.CreatedAt.ToString("O"));
 
-            try
+            if (_options.Value.SerializeJobArguments)
             {
-                operation.Telemetry.Properties.Add("JobArguments", JsonSerializer.Serialize(
-                    context.BackgroundJob.Job.Args?.Where(c => c is not CancellationToken)));
-            }
-            catch
-            {
-                operation.Telemetry.Properties.Add("JobArguments", "Serialization failed");
+                try
+                {
+                    operation.Telemetry.Properties.Add("JobArguments", JsonSerializer.Serialize(
+                        context.BackgroundJob.Job.Args?.Where(c => c is not CancellationToken)));
+                }
+                catch
+                {
+                    operation.Telemetry.Properties.Add("JobArguments", "Serialization failed");
+                }
             }
 
             var result = _performer.Perform(context);

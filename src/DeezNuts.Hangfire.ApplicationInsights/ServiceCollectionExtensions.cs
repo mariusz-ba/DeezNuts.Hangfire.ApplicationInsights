@@ -10,7 +10,14 @@ namespace DeezNuts.Hangfire.ApplicationInsights;
 public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddHangfireApplicationInsights(this IServiceCollection services)
+        => services.AddHangfireApplicationInsights(_ => { });
+    
+    public static IServiceCollection AddHangfireApplicationInsights(
+        this IServiceCollection services,
+        Action<HangfireApplicationInsightsOptions> configureOptions)
     {
+        services.Configure(configureOptions);
+        
         // Default implementations have to be registered in order to add custom performer.
         // https://github.com/HangfireIO/Hangfire/issues/1375#issuecomment-475641751
         services.TryAddSingleton<IBackgroundJobFactory, BackgroundJobFactory>();

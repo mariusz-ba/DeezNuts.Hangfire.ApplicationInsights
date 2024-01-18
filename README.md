@@ -39,8 +39,6 @@ See [Sample Project](./samples/WebApplicationSample) for full configuration exam
 
 ## Screenshots
 
-![Performance](./docs/application-insights-performance.png)
-
 ![Transaction](./docs/application-insights-transaction.png)
 
-![Errors](./docs/application-insights-errors.png)
+![Performance](./docs/application-insights-performance.png)
