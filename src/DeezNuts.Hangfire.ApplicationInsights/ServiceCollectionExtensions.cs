@@ -1,8 +1,4 @@
-using Hangfire.Client;
-using Hangfire.Server;
-using Hangfire.States;
 using Hangfire;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DeezNuts.Hangfire.ApplicationInsights;
@@ -18,20 +14,15 @@ public static class ServiceCollectionExtensions
     {
         services.Configure(configureOptions);
         
-        // Default implementations have to be registered in order to add custom performer.
-        // https://github.com/HangfireIO/Hangfire/issues/1375#issuecomment-475641751
-        services.TryAddSingleton<IBackgroundJobFactory, BackgroundJobFactory>();
-        services.TryAddSingleton<IBackgroundJobStateChanger, BackgroundJobStateChanger>();
-        services.TryAddSingleton<IBackgroundJobPerformer, BackgroundJobPerformer>();
-
-        services.AddSingleton<ApplicationInsightsBackgroundJobFilter>();
-
-        services.Decorate<IBackgroundJobPerformer, ApplicationInsightsBackgroundJobPerformer>();
+        services.AddSingleton<HangfireApplicationInsightsClientFilter>();
+        services.AddSingleton<HangfireApplicationInsightsServerFilter>();
 
         return services;
     }
 
-    public static IGlobalConfiguration<ApplicationInsightsBackgroundJobFilter> UseApplicationInsights(
+    public static IGlobalConfiguration UseApplicationInsights(
         this IGlobalConfiguration configuration, IServiceProvider serviceProvider)
-        => configuration.UseFilter(serviceProvider.GetRequiredService<ApplicationInsightsBackgroundJobFilter>());
+        => configuration
+            .UseFilter(serviceProvider.GetRequiredService<HangfireApplicationInsightsClientFilter>())
+            .UseFilter(serviceProvider.GetRequiredService<HangfireApplicationInsightsServerFilter>());
 }

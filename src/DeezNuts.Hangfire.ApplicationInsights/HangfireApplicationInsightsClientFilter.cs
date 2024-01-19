@@ -5,13 +5,13 @@ using Microsoft.ApplicationInsights;
 
 namespace DeezNuts.Hangfire.ApplicationInsights;
 
-public sealed class ApplicationInsightsBackgroundJobFilter : IClientFilter, IClientExceptionFilter
+public sealed class HangfireApplicationInsightsClientFilter : IClientFilter
 {
     private const string OperationItem = "Telemetry.Operation";
 
     private readonly TelemetryClient _telemetryClient;
 
-    public ApplicationInsightsBackgroundJobFilter(TelemetryClient telemetryClient)
+    public HangfireApplicationInsightsClientFilter(TelemetryClient telemetryClient)
     {
         _telemetryClient = telemetryClient;
     }
@@ -38,28 +38,27 @@ public sealed class ApplicationInsightsBackgroundJobFilter : IClientFilter, ICli
         {
             return;
         }
-        
-        operation.Telemetry.Properties.Add("JobId", context.BackgroundJob.Id);
-        operation.Telemetry.Properties.Add("JobCreatedAt", context.BackgroundJob.CreatedAt.ToString("O"));
-        operation.Telemetry.Success = true;
-        operation.Telemetry.ResultCode = "Enqueued";
-        operation.Telemetry.Stop();
-        context.Items.Remove(OperationItem);
-        operation.Dispose();
-    }
 
-    public void OnClientException(ClientExceptionContext filterContext)
-    {
-        var operation = GetOperation(filterContext);
-        if (operation is null)
+        if (context.Exception is null || context.ExceptionHandled)
         {
-            return;
+            operation.Telemetry.Properties.Add("JobId", context.BackgroundJob.Id);
+            operation.Telemetry.Properties.Add("JobCreatedAt", context.BackgroundJob.CreatedAt.ToString("O"));
+            operation.Telemetry.Success = true;
+            operation.Telemetry.ResultCode = "Enqueued";
         }
-
-        operation.Telemetry.Success = false;
-        operation.Telemetry.ResultCode = "Failed";
+        else
+        {
+            operation.Telemetry.Success = false;
+            operation.Telemetry.ResultCode = "Failed";
+            
+            var exceptionTelemetry = new ExceptionTelemetry(context.Exception);
+            exceptionTelemetry.Context.Operation.Id = operation.Telemetry.Context.Operation.Id;
+            exceptionTelemetry.Context.Operation.ParentId = operation.Telemetry.Id;
+            
+            _telemetryClient.TrackException(exceptionTelemetry);
+        }
+        
         operation.Telemetry.Stop();
-        filterContext.Items.Remove(OperationItem);
         operation.Dispose();
     }
     

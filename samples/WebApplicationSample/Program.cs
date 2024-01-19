@@ -6,6 +6,7 @@ using WebApplicationSample;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplicationInsightsTelemetry();
+builder.Services.AddApplicationInsightsTelemetryProcessor<CustomTelemetryProcessor>();
 
 builder.Services.AddHangfire((serviceProvider, globalConfiguration) => globalConfiguration
     .UseSimpleAssemblyNameTypeSerializer()
