@@ -3,6 +3,9 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Authors>Mariusz Baran</Authors>
+    <Description>Provides Dependency and Request telemetry for Hangfire jobs.</Description>
+    <PackageTags>Hangfire Analytics Azure ApplicationInsights Telemetry Monitoring</PackageTags>
     <RepositoryUrl>https://github.com/mariusz-ba/DeezNuts.Hangfire.ApplicationInsights</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mariusz-ba/DeezNuts.Hangfire.ApplicationInsights</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
