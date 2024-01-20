@@ -10,7 +10,6 @@
     <PackageProjectUrl>https://github.com/mariusz-ba/DeezNuts.Hangfire.ApplicationInsights</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix>alpha.5</VersionSuffix>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <LangVersion>12</LangVersion>
