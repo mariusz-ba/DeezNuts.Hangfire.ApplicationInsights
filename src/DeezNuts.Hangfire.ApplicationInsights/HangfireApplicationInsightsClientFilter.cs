@@ -19,7 +19,7 @@ public sealed class HangfireApplicationInsightsClientFilter : IClientFilter
     public void OnCreating(CreatingContext context)
     {
         var operation = _telemetryClient.StartOperation<DependencyTelemetry>(
-            $"Enqueue {context.Job.Type.Name}.{context.Job.Method.Name}");
+            $"ENQUEUE {context.Job.Type.Name}.{context.Job.Method.Name}");
         
         context.SetJobParameter("Operation.RootId", operation.Telemetry.Context.Operation.Id);
         context.SetJobParameter("Operation.ParentId", operation.Telemetry.Id);

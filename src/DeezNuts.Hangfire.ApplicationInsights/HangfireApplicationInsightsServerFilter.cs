@@ -25,7 +25,7 @@ public sealed class HangfireApplicationInsightsServerFilter : IServerFilter
     public void OnPerforming(PerformingContext context)
     {
         var operation = _telemetryClient.StartOperation<RequestTelemetry>(
-            $"Job {context.BackgroundJob.Job.Type.Name}.{context.BackgroundJob.Job.Method.Name}",
+            $"JOB {context.BackgroundJob.Job.Type.Name}.{context.BackgroundJob.Job.Method.Name}",
             context.GetJobParameter<string>("Operation.RootId"),
             context.GetJobParameter<string>("Operation.ParentId"));
         
